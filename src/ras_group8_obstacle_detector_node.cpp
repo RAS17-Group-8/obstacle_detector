@@ -1,6 +1,7 @@
 #include <ros/ros.h>
 #include <sensor_msgs/LaserScan.h>
-#include "std_msgs/String.h"
+//#include "std_msgs/String.h"
+#include "std_msgs/Bool.h"
 
 
 //try:
@@ -15,10 +16,10 @@ public:
   {
     //Topic you want to publish
 
-    pub_is_obstacle_ = nh_.advertise<std_msgs::String>("is_obstacle",1);
+    //pub_is_obstacle_ = nh_.advertise<std_msgs::String>("is_obstacle",1);
+    pub_is_obstacle_ = nh_.advertise<std_msgs::Bool>("is_obstacle",1);
+
     scan_subscriber_ = nh_.subscribe("/scan", 1, &ObstacleDetector::scanCallback, this);
-
-
 
   }
 
@@ -47,12 +48,14 @@ public:
       ROS_INFO("min_dist = %f", min_dist);
 
       if (min_dist<0.2){
-          msg.data = "Obstacle detected";
+//          msg.data = "Obstacle detected";
+//          pub_is_obstacle_.publish(msg);
+          msg.data = 1;
           pub_is_obstacle_.publish(msg);
       }
       else{
-          msg.data = "No obstacle";
-          pub_is_obstacle_.publish(msg);
+//          msg.data = "No obstacle";
+//          pub_is_obstacle_.publish(msg);
       }
   }
 
