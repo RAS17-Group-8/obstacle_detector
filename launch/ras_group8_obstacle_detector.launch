@@ -1,0 +1,13 @@
+<launch>  
+  <include file="/home/ras18/catkin_ws/src/ras_realsense/realsense_camera/launch/sr300_nodelet_rgbd.launch"/>
+
+  <include file="/home/ras18/catkin_ws/src/depthimage_to_laserscan/launch/depthimage_to_laserscan.launch"/>
+
+  <node pkg="ras_group8_obstacle_detector" type="ras_group8_obstacle_detector_node" name="ras_group8_obstacle_detector" output="screen">
+    
+  </node>
+
+
+
+
+</launch>
